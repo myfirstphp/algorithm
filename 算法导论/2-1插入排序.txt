@@ -1,0 +1,86 @@
+【2.1】插入排序
+C++语言实现
+#include <iostream>
+//Ctrl + F5运行
+/*插入排序：从数组第二个元素开始，把它赋值给一个变量key
+这时候第二个元素里面的值就不用管了，拿key和第二个（或者第n个）之前的元素依次比较；若key小于n-1(指数组元素)，就把n-1向右挪动，然后再拿key和n-2比较，直到不再小于，停止（因为key左边的元素是有序的），完成一个元素的插入*/
+/**/
+#include <ctime>
+
+auto foo(int* arr) -> int(*)
+{
+	int key;
+	int j;
+	for (int i = 1; i < 10; i++)
+	{
+		key = arr[i];
+		j = i - 1;
+		while (j >= 0 && arr[j] > key)
+		{
+			arr[j + 1] = arr[j];
+			j = j - 1;
+		}
+		arr[j + 1] = key;
+	}
+	return arr;
+}
+
+int main()
+{
+	srand(time(NULL));//以当前时间来生成随机种子
+	int arr[10];
+	int a = 0;
+	int n = 10;
+	int i = 0;
+	for (i; i < n; i++)
+	{
+		arr[i] = a + rand() % (n + 1 - a);
+	}
+	for (int i = 0; i < 10; i++)
+	{
+		std::cout << arr[i] << '\n';
+	}
+	std::cout << "-----------------" << '\n';
+	int *arr_b = foo(arr);
+	for (int i = 0; i < 10; i++)
+	{
+		std::cout << arr_b[i] << '\n';
+		
+	}
+	
+	return 0;
+}
+
+
+php实现
+<?php
+#插入排序
+
+function insert_sort($arr)
+{
+    for($i=1; $i < count($arr); $i = $i + 1)
+    {
+        $key = $arr[$i];
+        $j = $i - 1;
+        while($j >= 0 && $key < $arr[$j])
+        {
+            $arr[$j + 1] = $arr[$j];
+            $j = $j - 1;
+        }
+        $arr[$j + 1] = $key;
+    }
+    return $arr;
+}
+
+
+$i = 0;
+
+$arr = [];
+while($i < 10)
+{
+    $arr[$i] = rand(0, 20);
+    $i = $i + 1;
+}
+print_r($arr);
+$arr_r = insert_sort($arr);
+print_r($arr_r);
